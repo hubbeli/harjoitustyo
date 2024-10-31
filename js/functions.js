@@ -11,8 +11,20 @@ const animals = [
     "img/fly.png"
 ];
 
+let correctCount = 0;  // oikein vastattujen laskuri
+let incorrectCount = 0;  // väärin vastattujen laskuri
 let correctAnswer;
 nextButton.onclick = showRandomAnimals;
+
+const updateAnswerCounts = () => {
+    document.querySelector('#correct-count').value = correctCount;
+    document.querySelector('#incorrect-count').value = incorrectCount;
+}
+
+addEventListener("DOMContentLoaded", () => {
+    updateAnswerCounts(); // päivittää laskurit
+});
+
 
 // Funktio eläinten näyttämiseen
 function showRandomAnimals() {
@@ -20,10 +32,8 @@ function showRandomAnimals() {
     numberContainer.innerHTML = "";
     nextButton.style.display = "none";
 
-    // Valitsee satunnaisesti eläinkuvia
+    // Valitsee satunnaisesti eläinkuvia satunnaisen määrän
     const randomAnimal = animals[Math.floor(Math.random() * animals.length)];
-    
-    // Valitsee satunnaisen määrän eläinkuvia
     correctAnswer = Math.floor(Math.random() * 10) + 1; // Asetetaan oikea vastaus
 
     // Lisää valitun eläinkuvan animalContaineriin oikean määrän kertoja
@@ -49,11 +59,15 @@ function checkAnswer(selectedNumber) {
     if (selectedNumber === correctAnswer) {
         feedback.innerHTML = "<img src='img/smiley.png' alt='Oikein!' />"; // Oikea vastaus
         nextButton.style.display = "inline-block";
+        correctCount++;  // kasvattaa oikein-laskuria
     } else {
         feedback.innerHTML = "<img src='img/sadface.png' alt='Väärin!' />"; // Väärä vastaus
         nextButton.style.display = "none";
+        incorrectCount++;  // kasvattaa väärin-laskuria
     }
+    updateAnswerCounts();
 }
 
 // Aloitetaan peli
+updateAnswerCounts();
 showRandomAnimals();
