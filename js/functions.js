@@ -1,6 +1,7 @@
 const animalContainer = document.getElementById("animal-container");
 const numberContainer = document.getElementById("number-container");
 const feedback = document.getElementById("feedback");
+const nextButton = document.getElementById("next-button");
 
 const animals = [
     "img/ant.png",
@@ -11,11 +12,13 @@ const animals = [
 ];
 
 let correctAnswer;
+nextButton.onclick = showRandomAnimals;
 
 // Funktio eläinten näyttämiseen
 function showRandomAnimals() {
     animalContainer.innerHTML = "";
     numberContainer.innerHTML = "";
+    nextButton.style.display = "none";
 
     // Valitsee satunnaisesti eläinkuvia
     const randomAnimal = animals[Math.floor(Math.random() * animals.length)];
@@ -45,8 +48,10 @@ function showRandomAnimals() {
 function checkAnswer(selectedNumber) {
     if (selectedNumber === correctAnswer) {
         feedback.innerHTML = "<img src='img/smiley.png' alt='Oikein!' />"; // Oikea vastaus
+        nextButton.style.display = "inline-block";
     } else {
         feedback.innerHTML = "<img src='img/sadface.png' alt='Väärin!' />"; // Väärä vastaus
+        nextButton.style.display = "none";
     }
 }
 
