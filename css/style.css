@@ -23,6 +23,33 @@ footer {
     margin-top: 20px;
 }
 .animal {
-    width: 80px;
+    width: 100px;
     height: auto;
 }
+
+.number-button {
+    width: 70px;
+    height: auto;
+    cursor: pointer;
+    margin: 5px;
+}
+.feedback {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+#number-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+#centered-text {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #333;
