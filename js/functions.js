@@ -14,6 +14,7 @@ const animals = [
 let correctCount = 0;  // oikein vastattujen laskuri
 let incorrectCount = 0;  // väärin vastattujen laskuri
 let correctAnswer;
+let isAnswered = false; // Estää klikkaukset oikean vastauksen jälkeen
 nextButton.onclick = showRandomAnimals;
 
 const updateAnswerCounts = () => {
@@ -30,7 +31,9 @@ addEventListener("DOMContentLoaded", () => {
 function showRandomAnimals() {
     animalContainer.innerHTML = "";
     numberContainer.innerHTML = "";
+    feedback.innerHTML = "";
     nextButton.style.display = "none";
+    isAnswered = false; // Nollataan klikkausesto uuden kysymyksen alussa
 
     // Valitsee satunnaisesti eläinkuvia satunnaisen määrän
     const randomAnimal = animals[Math.floor(Math.random() * animals.length)];
@@ -56,10 +59,12 @@ function showRandomAnimals() {
 
 // Vastausten tarkistus
 function checkAnswer(selectedNumber) {
+    if (isAnswered) return; // Estää klikkauksen oikean vastauksen jälkeen
     if (selectedNumber === correctAnswer) {
         feedback.innerHTML = "<img src='img/smiley.png' alt='Oikein!' />"; // Oikea vastaus
         nextButton.style.display = "inline-block";
         correctCount++;  // kasvattaa oikein-laskuria
+        isAnswered = true; // Estää lisää klikkauksia oikean vastauksen jälkeen
     } else {
         feedback.innerHTML = "<img src='img/sadface.png' alt='Väärin!' />"; // Väärä vastaus
         nextButton.style.display = "none";
