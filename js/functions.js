@@ -70,6 +70,11 @@ function checkAnswer(selectedNumber) {
         nextButton.style.display = "none";
         incorrectCount++;  // kasvattaa väärin-laskuria
     }
+
+    // Tallennetaan pisteet sessionStorageen
+    sessionStorage.setItem("correctCount", correctCount);
+    sessionStorage.setItem("incorrectCount", incorrectCount);
+    
     updateAnswerCounts();
 }
 
